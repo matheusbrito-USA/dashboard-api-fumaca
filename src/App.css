@@ -1,0 +1,546 @@
+/* 📦 Container principal */
+html, body {
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 32px 48px;
+  background: #0f172a;
+  min-height: 100vh;
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+/* 📦 Cabeçalho principal */
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 2px solid #334155;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* 📦 Lado esquerdo (logo + título) */
+.cabecalho-central {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 📦 Lado direito (clima + relógio) */
+.cabecalho-direita {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-right: 16px;
+}
+
+/* 🏭 Logo */
+.logo-usina {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* 📝 Título */
+h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin: 0 0 12px 0;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* 🕐 Relógio */
+.relogio {
+  text-align: center;
+  color: #e2e8f0;
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.relogio .hora {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.relogio .data {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* ☁️ Clima */
+.weather-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 12px;
+  padding: 6px 16px 6px 12px;
+  border: 1px solid #334155;
+  backdrop-filter: blur(4px);
+  min-width: 120px;
+}
+
+.weather-widget .weather-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-widget .weather-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.weather-widget .weather-temp {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f3f4f6;
+}
+
+.weather-widget .weather-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.weather-widget .weather-condition {
+  font-size: 11px;
+  color: #e2e8f0;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.weather-widget .weather-stats {
+  display: flex;
+  gap: 8px;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.weather-widget .weather-stats span {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* 📊 Grid principal */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+/* 📦 Painéis */
+.painel {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.painel h2 {
+  margin-top: 0;
+}
+
+/* 📋 Coluna de eventos */
+.coluna-eventos {
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.coluna-eventos .lista-eventos {
+  overflow-y: auto;
+  padding-right: 4px;
+  flex: 1;
+}
+
+/* 🃏 Cards de eventos */
+.lista-eventos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-evento {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: all 0.2s ease;
+}
+
+.card-evento:hover {
+  border-color: #475569;
+  transform: translateX(2px);
+}
+
+.card-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.evento-id {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.card-corpo p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.card-corpo strong {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.data-evento {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px !important;
+}
+
+/* 🏷️ Badges de status */
+.badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.status-confirmado {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status-falso {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-resolvido {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* 🎯 Botões de ação */
+.card-acoes {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #1e293b;
+}
+
+.botao-acao {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.botao-acao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.botao-falso {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.botao-falso:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 0.3);
+}
+
+.botao-resolvido {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.botao-resolvido:hover:not(:disabled) {
+  background: rgba(34, 197, 94, 0.3);
+}
+
+/* 📊 KPI Cards - 3 colunas */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+
+}
+
+.kpi-card {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 20px 24px;
+  border-left: 4px solid #3b82f6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px -1px rgba(0, 0, 0, 0.3);
+}
+
+.kpi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.kpi-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.kpi-tendencia {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.kpi-valor {
+  font-size: 32px;
+  font-weight: 700;
+  color: #f3f4f6;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.kpi-titulo {
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 🗺️ Mapa */
+.leaflet-container {
+  border-radius: 10px;
+  background: #1a1a2e;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-radius: 8px;
+}
+
+.leaflet-popup-tip {
+  background: #1e293b;
+}
+
+.custom-div-icon {
+  background: none;
+  border: none;
+}
+
+/* 📱 Responsividade */
+@media (max-width: 1200px) {
+  .container {
+    padding: 24px 32px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 20px 24px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .cabecalho-central h1 {
+    font-size: 1.2rem;
+  }
+  
+  .logo-usina {
+    height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .cabecalho-central {
+    flex-wrap: wrap;
+  }
+  
+  .cabecalho-central h1 {
+    font-size: 1rem;
+  }
+  
+  .cabecalho-direita {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .logo-usina {
+    height: 50px;
+  }
+  
+  .kpi-card {
+    padding: 16px;
+  }
+  
+  .kpi-valor {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cabecalho-direita {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .weather-widget {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .relogio {
+    text-align: center;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+/* 📜 Scroll personalizado */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* 🎯 Mensagens de erro */
+.erro {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+
+/* 🎥 Câmera ao vivo */
+.camera-ao-vivo {
+  display: flex;
+  flex-direction: column;
+}
+
+.camera-video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0f172a;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

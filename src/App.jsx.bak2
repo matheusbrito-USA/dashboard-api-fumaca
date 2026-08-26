@@ -1,0 +1,48 @@
+import { useState, useEffect } from 'react'
+import './App.css'
+
+function App() {
+  const [eventos, setEventos] = useState([])
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState(null)
+
+  useEffect(() => {
+    fetch('http://localhost:8000/events')
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        setEventos(dados)
+        setCarregando(false)
+      })
+      .catch((err) => {
+        setErro('Não foi possível carregar os eventos. A API está rodando?')
+        setCarregando(false)
+        console.error(err)
+      })
+  }, [])
+
+  if (carregando) {
+    return <p>Carregando eventos...</p>
+  }
+
+  if (erro) {
+    return <p style={{ color: 'red' }}>{erro}</p>
+  }
+
+  return (
+    <div>
+      <h1>Sistema de Detecção de Fumaça</h1>
+      <h2>Eventos Recentes</h2>
+      <ul>
+        {eventos.map((evento) => (
+          <li key={evento.id}>
+            <strong>Evento #{evento.id}</strong> — {evento.event_type} —
+            confiança: {(evento.confidence * 100).toFixed(0)}% —
+            status: {evento.status} — {evento.detected_at}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export default App
