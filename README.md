@@ -1,16 +1,62 @@
-# React + Vite
+# DASHBOARD-API-FUMACA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dashboard para monitoramento em tempo real do sistema de detecção de fumaça e incêndios utilizando visão computacional (YOLOv8). Desenvolvido em React com Vite.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Arquitetura
 
-## React Compiler
+- **React 18** com **Vite** e **SWC** para compilação otimizada
+- **HMR** (Hot Module Replacement) para desenvolvimento
+- **Fetch API** para comunicação assíncrona com backend FastAPI
+- **Leaflet + OpenStreetMap** para renderização de mapas satélite
+- **MJPEG** para transmissão do stream da câmera
+- **OpenWeatherMap API** para dados climáticos
+- **Recharts** para visualização de dados
+- **Lucide React** para ícones
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- KPIs em tempo real (eventos, alarmes, falsos positivos)
+- Mapa interativo com perímetro da RPPN
+- Stream MJPEG da câmera com detecções da IA
+- Lista de eventos com ações (Falso Positivo / Resolvido)
+- Dados climáticos atualizados (temperatura, umidade, vento)
+- Atualização automática a cada 5 segundos
+- Design responsivo com tema escuro
+
+---
+
+## Stack Tecnológico
+
+| Camada | Tecnologia | Versão |
+|--------|------------|--------|
+| Frontend | React | 18.2.0 |
+| Build Tool | Vite | 5.0.0 |
+| Compilador | SWC | - |
+| Mapas | Leaflet | 1.9.4 |
+| Gráficos | Recharts | 2.8.0 |
+| Ícones | Lucide React | 0.294.0 |
+| Estilização | CSS | - |
+
+---
+
+## Endpoints Consumidos
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | /events | Lista eventos recentes |
+| PATCH | /events/{id} | Atualiza status do evento |
+| GET | /stream/live | Stream MJPEG da câmera |
+
+---
+
+## Execução
+
+```bash
+git clone https://github.com/matheusbrito-USA/dashboard-api-fumaca.git
+cd dashboard-api-fumaca
+npm install
+npm run dev
