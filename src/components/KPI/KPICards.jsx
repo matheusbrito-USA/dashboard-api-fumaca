@@ -1,5 +1,4 @@
-import React from 'react';
-import { Activity, AlertTriangle, CheckCircle, TrendingUp } from 'lucide-react';
+import { Activity, AlertTriangle, TrendingUp } from 'lucide-react';
 
 function KPICards({ eventos }) {
   // 📊 Calcular métricas
@@ -11,14 +10,6 @@ function KPICards({ eventos }) {
 
   const alarmesAtivos = eventos.filter(e => e.status === 'CONFIRMED').length;
   const falsosPositivos = eventos.filter(e => e.status === 'FALSO_POSITIVO').length;
-  const resolvidos = eventos.filter(e => e.status === 'RESOLVIDO').length;
-  
-  // 🎯 Calcular taxa de acerto (confirmados / total)
-  const totalProcessados = falsosPositivos + resolvidos + alarmesAtivos;
-  const taxaAcerto = totalProcessados > 0 
-    ? Math.round((resolvidos / totalProcessados) * 100) 
-    : 0;
-
   // 📈 Tendência (simulada - você pode ajustar depois)
   const tendencia = {
     eventos: '+12%',

@@ -1,156 +1,100 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import logoUsina from './assets/logo-usina-dourada.png'
-import Relogio from './components/Relogio'
-import CameraAoVivo from './components/CameraAoVivo'
-import CameraMap from './components/CameraMap'
-import WeatherWidget from './components/Weather/WeatherWidget'
-import KPICards from './components/KPI/KPICards'
+import { useEffect } from 'react'
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom'
 
-const CORES_STATUS = {
-  CONFIRMED: { texto: 'Confirmado', classe: 'status-confirmado' },
-  FALSO_POSITIVO: { texto: 'Falso Positivo', classe: 'status-falso' },
-  RESOLVIDO: { texto: 'Resolvido', classe: 'status-resolvido' },
-}
+import Logs from './pages/Logs'
 
-const INTERVALO_ATUALIZACAO_MS = 5000
+import Login from './pages/Login'
+import Operador from './pages/Operador'
+import Tecnico from './pages/Tecnico'
+import Usuarios from './pages/Usuarios'
+import Cameras from './pages/Cameras'
+import Notificacoes from './pages/Notificacoes'
 
-function formatarData(isoString) {
-  const data = new Date(isoString)
-  return data.toLocaleString('pt-BR', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
-}
 
-function App() {
-  const [eventos, setEventos] = useState([])
-  const [carregando, setCarregando] = useState(true)
-  const [erro, setErro] = useState(null)
-  const [atualizandoId, setAtualizandoId] = useState(null)
-
-  function buscarEventos() {
-    fetch('http://localhost:8000/events')
-      .then((resposta) => resposta.json())
-      .then((dados) => {
-        setEventos(dados)
-        setCarregando(false)
-        setErro(null)
-      })
-      .catch((err) => {
-        setErro('Não foi possível carregar os eventos. A API está rodando?')
-        setCarregando(false)
-        console.error(err)
-      })
-  }
-
-  function atualizarStatus(id, novoStatus) {
-    setAtualizandoId(id)
-    fetch(`http://localhost:8000/events/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status: novoStatus }),
-    })
-      .then((resposta) => {
-        if (!resposta.ok) {
-          throw new Error('Falha ao atualizar status')
-        }
-        return resposta.json()
-      })
-      .then(() => {
-        buscarEventos()
-      })
-      .catch((err) => {
-        alert('Não foi possível atualizar o evento. Tente novamente.')
-        console.error(err)
-      })
-      .finally(() => {
-        setAtualizandoId(null)
-      })
-  }
+function TituloDaPagina() {
+  const location = useLocation()
 
   useEffect(() => {
-    buscarEventos()
-    const intervalo = setInterval(buscarEventos, INTERVALO_ATUALIZACAO_MS)
-    return () => clearInterval(intervalo)
-  }, [])
+    if (location.pathname === '/login') {
+      document.title = 'Login'
+    } else if (location.pathname.startsWith('/operador')) {
+      document.title = 'Operador'
+    } else if (location.pathname.startsWith('/tecnico')) {
+      document.title = 'Técnico'
+    } else {
+      document.title = 'Sistema de Monitoramento'
+    }
+  }, [location.pathname])
 
-  if (carregando) {
-    return <div className="container"><p>Carregando eventos...</p></div>
-  }
-
-  if (erro) {
-    return <div className="container"><p className="erro">{erro}</p></div>
-  }
-
-  return (
-    <div className="container">
-      <header className="cabecalho">
-        <div className="cabecalho-central">
-          <img src={logoUsina} alt="Logo Usina" className="logo-usina" />
-          <h1>SISTEMA DE DETECÇÃO DE FUMAÇA</h1>
-        </div>
-        <div className="cabecalho-direita">
-          <WeatherWidget />
-          <Relogio />
-        </div>
-      </header>
-
-      <KPICards eventos={eventos} />
-
-      <div className="dashboard-grid">
-        <div className="painel coluna-eventos">
-          <h2>Eventos Recentes</h2>
-          <div className="lista-eventos">
-            {eventos.map((evento) => {
-              const statusInfo = CORES_STATUS[evento.status] || { texto: evento.status, classe: '' }
-              const emAtualizacao = atualizandoId === evento.id
-
-              return (
-                <div key={evento.id} className="card-evento">
-                  <div className="card-topo">
-                    <span className="evento-id">Evento #{evento.id}</span>
-                    <span className={`badge ${statusInfo.classe}`}>{statusInfo.texto}</span>
-                  </div>
-                  <div className="card-corpo">
-                    <p><strong>Tipo:</strong> {evento.event_type}</p>
-                    <p><strong>Confiança:</strong> {(evento.confidence * 100).toFixed(0)}%</p>
-                    <p className="data-evento">{formatarData(evento.detected_at)}</p>
-                  </div>
-
-                  {evento.status === 'CONFIRMED' && (
-                    <div className="card-acoes">
-                      <button
-                        className="botao-acao botao-falso"
-                        disabled={emAtualizacao}
-                        onClick={() => atualizarStatus(evento.id, 'FALSO_POSITIVO')}
-                      >
-                        {emAtualizacao ? 'Atualizando...' : 'Falso Positivo'}
-                      </button>
-                      <button
-                        className="botao-acao botao-resolvido"
-                        disabled={emAtualizacao}
-                        onClick={() => atualizarStatus(evento.id, 'RESOLVIDO')}
-                      >
-                        {emAtualizacao ? 'Atualizando...' : 'Resolvido'}
-                      </button>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
-        <CameraAoVivo />
-
-        <CameraMap eventos={eventos} />
-      </div>
-    </div>
-  )
+  return null
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <TituloDaPagina />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Navigate
+              to="/login"
+              replace
+            />
+          }
+        />
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/operador"
+          element={<Operador />}
+        />
+
+        <Route
+          path="/tecnico"
+          element={<Tecnico />}
+        />
+
+        <Route
+          path="/tecnico/usuarios"
+          element={<Usuarios />}
+        />
+
+        <Route
+          path="/tecnico/cameras"
+          element={<Cameras />}
+        />
+
+        <Route
+          path="/tecnico/notificacoes"
+          element={<Notificacoes />}
+        />
+
+        <Route
+          path="/tecnico/logs"
+          element={<Logs />}
+        />
+
+        <Route
+          path="*"
+          element={
+            <Navigate
+              to="/login"
+              replace
+            />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  )
+}

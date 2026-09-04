@@ -47,9 +47,18 @@ export function useWeather() {
 
   // 🔄 Buscar ao montar e a cada 5 minutos
   useEffect(() => {
-    fetchWeather();
-    const interval = setInterval(fetchWeather, 5 * 60 * 1000);
-    return () => clearInterval(interval);
+    const primeiraBusca = setTimeout(() => {
+      void fetchWeather();
+    }, 0);
+
+    const interval = setInterval(() => {
+      void fetchWeather();
+    }, 5 * 60 * 1000);
+
+    return () => {
+      clearTimeout(primeiraBusca);
+      clearInterval(interval);
+    };
   }, []);
 
   return { weather, loading, error };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Cloud, Sun, CloudRain, Wind, Droplets } from 'lucide-react';
 
 // 📍 Coordenadas da RPPN
@@ -6,7 +6,7 @@ const LAT = -14.777;
 const LNG = -45.123;
 
 // ⚠️ COLOQUE SUA CHAVE AQUI (gratuita no OpenWeatherMap)
-const API_KEY = 'dd30e2898540c254576b016b19d0291b';
+const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY || ''
 
 // 🎨 Ícone baseado na condição do tempo
 const getWeatherIcon = (condition) => {
@@ -48,9 +48,18 @@ function WeatherWidget() {
   };
 
   useEffect(() => {
-    fetchWeather();
-    const interval = setInterval(fetchWeather, 5 * 60 * 1000); // 5 min
-    return () => clearInterval(interval);
+    const primeiraBusca = setTimeout(() => {
+      void fetchWeather();
+    }, 0);
+
+    const interval = setInterval(() => {
+      void fetchWeather();
+    }, 5 * 60 * 1000);
+
+    return () => {
+      clearTimeout(primeiraBusca);
+      clearInterval(interval);
+    };
   }, []);
 
   if (loading) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Polygon, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -193,8 +193,10 @@ function CameraMap({ eventos = [] }) {
           <Marker
             key={evento.id || index}
             position={[
-              CENTER[0] + (Math.random() - 0.5) * 0.008,
-              CENTER[1] + (Math.random() - 0.5) * 0.008
+              CENTER[0] +
+                ((((Number(evento.id) || index + 1) * 37) % 17) - 8) * 0.0005,
+              CENTER[1] +
+                ((((Number(evento.id) || index + 1) * 53) % 17) - 8) * 0.0005
             ]}
             icon={alertIcon}
           >

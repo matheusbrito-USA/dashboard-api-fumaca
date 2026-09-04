@@ -1,0 +1,253 @@
+.technical-shell {
+  min-height: 100vh;
+  display: flex;
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.technical-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+}
+
+.technical-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 8px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.technical-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.technical-brand-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.technical-brand-area {
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold-primary);
+}
+
+.technical-menu-label {
+  margin: 24px 10px 10px;
+  color: var(--text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.technical-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.technical-nav-item {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.technical-nav-item:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  transform: translateY(-1px);
+}
+
+.technical-nav-item.is-active {
+  color: var(--text-warm);
+  background: var(--green-deep);
+  border-color: rgba(76, 175, 110, 0.22);
+}
+
+.technical-nav-item.is-active svg {
+  color: var(--green-primary);
+}
+
+.technical-sidebar-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.technical-operator-button,
+.technical-logout-button {
+  width: 100%;
+  min-height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.technical-operator-button {
+  background: var(--gold-deep);
+  border: 1px solid rgba(212, 162, 76, 0.28);
+  color: var(--gold-hover);
+}
+
+.technical-operator-button:hover {
+  background: #594126;
+  border-color: var(--gold-muted);
+  transform: translateY(-1px);
+}
+
+.technical-logout-button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-tertiary);
+}
+
+.technical-logout-button:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+.technical-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.technical-topbar {
+  min-height: 88px;
+  padding: 18px 32px;
+  background: rgba(16, 19, 23, 0.96);
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.technical-topbar h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 650;
+}
+
+.technical-topbar p {
+  margin: 4px 0 0;
+  font-size: 13px;
+}
+
+.technical-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.technical-user > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.technical-user strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.technical-user span:not(.technical-status-dot) {
+  color: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.technical-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.technical-content {
+  width: 100%;
+  max-width: 1500px;
+  padding: 32px;
+}
+
+@media (max-width: 900px) {
+  .technical-sidebar {
+    width: 220px;
+  }
+
+  .technical-content,
+  .technical-topbar {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  .technical-shell {
+    display: block;
+  }
+
+  .technical-sidebar {
+    width: 100%;
+    min-height: auto;
+    position: static;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .technical-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .technical-sidebar-footer {
+    margin-top: 24px;
+  }
+
+  .technical-topbar {
+    position: static;
+  }
+
+  .technical-user {
+    display: none;
+  }
+
+  .technical-content {
+    padding: 24px 16px;
+  }
+}
