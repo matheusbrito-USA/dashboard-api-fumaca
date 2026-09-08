@@ -1280,10 +1280,10 @@ const botaoPrimario = {
   borderRadius:
     'var(--radius-sm)',
   border:
-    '1px solid var(--gold-muted)',
+    '1px solid #d4ddcb',
   background:
-    'var(--gold-primary)',
-  color: '#17120A',
+    '#eef2e9',
+  color: '#2c4232',
   fontWeight: 600,
   display: 'inline-flex',
   alignItems: 'center',

@@ -268,14 +268,10 @@ export default function Notificacoes() {
   }
 
   return (
-    <TechnicalLayout>
+    <TechnicalLayout title="Notificações" description="Configuração de alertas por e-mail e Telegram.">
       <div style={styles.pagina}>
         <div style={styles.topo}>
           <div>
-            <div style={styles.tituloPagina}>
-              <Bell size={25} />
-              Notificações
-            </div>
 
             <p style={styles.descricao}>
               Escolha quais usuários do sistema receberão alertas
@@ -642,12 +638,13 @@ function ResumoCard({
 
 const styles = {
   pagina: {
-    padding: 32,
-    color: '#F0F2F5',
+    padding: 0,
+    color: 'var(--text-primary)',
   },
 
   topo: {
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     gap: 20,
@@ -663,7 +660,7 @@ const styles = {
   },
 
   descricao: {
-    color: '#9DA6B2',
+    color: 'var(--text-secondary)',
     marginTop: 8,
     marginBottom: 0,
   },
@@ -677,9 +674,9 @@ const styles = {
   },
 
   resumoCard: {
-    background: '#151A1F',
-    border: '1px solid #2A2F36',
-    borderRadius: 10,
+    background: 'var(--bg-card)',
+    border: '1px solid var(--border)',
+    borderRadius: 4,
     padding: 16,
     display: 'flex',
     alignItems: 'center',
@@ -689,12 +686,12 @@ const styles = {
   resumoIcone: {
     width: 38,
     height: 38,
-    borderRadius: 9,
-    background: '#1B2128',
+    borderRadius: 4,
+    background: 'var(--bg-elevated)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: '#D4A24C',
+    color: 'var(--green-primary)',
   },
 
   resumoValor: {
@@ -704,14 +701,14 @@ const styles = {
 
   resumoTitulo: {
     fontSize: 12,
-    color: '#9DA6B2',
+    color: 'var(--text-secondary)',
     marginTop: 2,
   },
 
   card: {
-    background: '#151A1F',
-    border: '1px solid #2A2F36',
-    borderRadius: 10,
+    background: 'var(--bg-card)',
+    border: '1px solid var(--border)',
+    borderRadius: 4,
     overflow: 'hidden',
   },
 
@@ -721,7 +718,7 @@ const styles = {
     alignItems: 'center',
     gap: 16,
     padding: 20,
-    borderBottom: '1px solid #2A2F36',
+    borderBottom: '1px solid var(--border)',
   },
 
   tituloCanal: {
@@ -733,7 +730,7 @@ const styles = {
   },
 
   subtitulo: {
-    color: '#8F99A5',
+    color: 'var(--text-secondary)',
     fontSize: 13,
     marginTop: 5,
   },
@@ -752,28 +749,28 @@ const styles = {
     padding: '13px 18px',
     fontSize: 12,
     fontWeight: 600,
-    color: '#8F99A5',
-    borderBottom: '1px solid #2A2F36',
+    color: 'var(--text-secondary)',
+    borderBottom: '1px solid var(--border)',
   },
 
   thDireita: {
     textAlign: 'right',
     padding: '13px 18px',
     fontSize: 12,
-    color: '#8F99A5',
-    borderBottom: '1px solid #2A2F36',
+    color: 'var(--text-secondary)',
+    borderBottom: '1px solid var(--border)',
   },
 
   td: {
     padding: '15px 18px',
-    borderBottom: '1px solid #242A31',
+    borderBottom: '1px solid var(--border)',
     fontSize: 14,
     verticalAlign: 'middle',
   },
 
   tdDireita: {
     padding: '15px 18px',
-    borderBottom: '1px solid #242A31',
+    borderBottom: '1px solid var(--border)',
     textAlign: 'right',
     whiteSpace: 'nowrap',
   },
@@ -783,13 +780,13 @@ const styles = {
   },
 
   usuarioMeta: {
-    color: '#7F8995',
+    color: 'var(--text-tertiary)',
     fontSize: 12,
     marginTop: 4,
   },
 
   destino: {
-    color: '#B9C1CA',
+    color: 'var(--text-primary)',
     marginBottom: 7,
   },
 
@@ -798,10 +795,10 @@ const styles = {
     alignItems: 'center',
     gap: 5,
     padding: '5px 9px',
-    borderRadius: 999,
-    border: '1px solid #345E43',
-    background: '#17271D',
-    color: '#66D48A',
+    borderRadius: 4,
+    border: '1px solid #bdd0ba',
+    background: '#edf4e9',
+    color: '#315b3b',
     fontSize: 12,
   },
 
@@ -810,10 +807,10 @@ const styles = {
     alignItems: 'center',
     gap: 5,
     padding: '5px 9px',
-    borderRadius: 999,
-    border: '1px solid #45393A',
-    background: '#241A1B',
-    color: '#C98282',
+    borderRadius: 4,
+    border: '1px solid #d8dcd3',
+    background: '#f1f2ed',
+    color: '#626b5e',
     fontSize: 12,
   },
 
@@ -823,10 +820,10 @@ const styles = {
     justifyContent: 'center',
     gap: 7,
     padding: '9px 14px',
-    border: 0,
-    borderRadius: 8,
-    background: '#4CAF6E',
-    color: '#FFFFFF',
+    border: '1px solid #d4ddcb',
+    borderRadius: 4,
+    background: '#eef2e9',
+    color: '#2c4232',
     fontWeight: 600,
     cursor: 'pointer',
   },
@@ -836,34 +833,34 @@ const styles = {
     alignItems: 'center',
     gap: 7,
     padding: '9px 13px',
-    borderRadius: 8,
-    border: '1px solid #353B43',
-    background: '#151A1F',
-    color: '#D5DAE0',
+    borderRadius: 4,
+    border: '1px solid #d4ddcb',
+    background: '#eef2e9',
+    color: '#2c4232',
     cursor: 'pointer',
   },
 
   vazio: {
     padding: 30,
     textAlign: 'center',
-    color: '#8F99A5',
+    color: 'var(--text-secondary)',
   },
 
   erro: {
-    background: '#2A1B1C',
-    border: '1px solid #5A393B',
-    color: '#E09A9A',
+    background: '#fff0ed',
+    border: '1px solid #e1b4aa',
+    color: '#9a3528',
     padding: '11px 14px',
-    borderRadius: 8,
+    borderRadius: 4,
     marginBottom: 18,
   },
 
   sucesso: {
-    background: '#17271D',
-    border: '1px solid #345E43',
-    color: '#78D99A',
+    background: '#edf4e9',
+    border: '1px solid #bdd0ba',
+    color: '#315b3b',
     padding: '11px 14px',
-    borderRadius: 8,
+    borderRadius: 4,
     marginBottom: 18,
   },
 
@@ -872,18 +869,18 @@ const styles = {
     display: 'flex',
     gap: 10,
     alignItems: 'flex-start',
-    background: '#171B20',
-    border: '1px solid #2A2F36',
-    color: '#929CA8',
+    background: 'var(--bg-elevated)',
+    border: '1px solid var(--border)',
+    color: 'var(--text-secondary)',
     padding: 14,
-    borderRadius: 9,
+    borderRadius: 4,
     fontSize: 13,
   },
 
   overlay: {
     position: 'fixed',
     inset: 0,
-    background: 'rgba(0, 0, 0, 0.68)',
+    background: 'rgba(24, 34, 26, 0.40)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -892,23 +889,27 @@ const styles = {
   },
 
   modal: {
+    maxHeight: 'calc(100dvh - 40px)',
+    overflowY: 'auto',
     width: '100%',
     maxWidth: 650,
-    background: '#151A1F',
-    border: '1px solid #343A42',
-    borderRadius: 12,
-    boxShadow: '0 20px 60px rgba(0,0,0,.4)',
+    background: 'var(--bg-card)',
+    border: '1px solid var(--border)',
+    borderRadius: 4,
+    boxShadow: '0 20px 60px rgba(24,34,26,.18)',
   },
 
   modalHeader: {
     padding: 20,
-    borderBottom: '1px solid #2A2F36',
+    borderBottom: '1px solid var(--border)',
     display: 'flex',
     justifyContent: 'space-between',
     gap: 16,
   },
 
   modalTitulo: {
+    color: 'var(--text-primary)',
+    textTransform: 'none',
     margin: 0,
     fontSize: 20,
   },
@@ -916,7 +917,7 @@ const styles = {
   botaoFechar: {
     border: 0,
     background: 'transparent',
-    color: '#AAB2BC',
+    color: 'var(--text-secondary)',
     cursor: 'pointer',
   },
 
@@ -927,13 +928,14 @@ const styles = {
   },
 
   blocoCanal: {
-    border: '1px solid #2A2F36',
-    borderRadius: 10,
+    border: '1px solid var(--border)',
+    borderRadius: 4,
     padding: 16,
-    background: '#11161B',
+    background: 'var(--bg-elevated)',
   },
 
   blocoCanalTopo: {
+    flexWrap: 'wrap',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -952,7 +954,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: 7,
-    color: '#B9C1CA',
+    color: 'var(--text-primary)',
     fontSize: 13,
   },
 
@@ -960,37 +962,36 @@ const styles = {
     width: '100%',
     boxSizing: 'border-box',
     padding: '10px 11px',
-    borderRadius: 8,
-    border: '1px solid #343A42',
-    background: '#101317',
-    color: '#F0F2F5',
-    outline: 'none',
+    borderRadius: 4,
+    border: '1px solid var(--border)',
+    background: 'var(--bg-card)',
+    color: 'var(--text-primary)',
   },
 
   ajuda: {
-    color: '#737D89',
+    color: 'var(--text-tertiary)',
     fontSize: 12,
     marginTop: 8,
   },
 
   blocoAlertas: {
-    border: '1px solid #2A2F36',
-    borderRadius: 10,
+    border: '1px solid var(--border)',
+    borderRadius: 4,
     padding: 16,
-    background: '#11161B',
+    background: 'var(--bg-elevated)',
   },
 
   switchLabel: {
     display: 'flex',
     alignItems: 'center',
     gap: 8,
-    color: '#C5CCD4',
+    color: 'var(--text-primary)',
     fontSize: 13,
     cursor: 'pointer',
   },
 
   erroModal: {
-    color: '#E09A9A',
+    color: '#9a3528',
     fontSize: 13,
   },
 
@@ -999,15 +1000,15 @@ const styles = {
     justifyContent: 'flex-end',
     gap: 10,
     padding: 20,
-    borderTop: '1px solid #2A2F36',
+    borderTop: '1px solid var(--border)',
   },
 
   botaoCancelar: {
     padding: '9px 14px',
-    borderRadius: 8,
-    border: '1px solid #343A42',
-    background: '#1B2128',
-    color: '#C5CCD4',
+    borderRadius: 4,
+    border: '1px solid #d4ddcb',
+    background: '#eef2e9',
+    color: '#2c4232',
     cursor: 'pointer',
   },
 }

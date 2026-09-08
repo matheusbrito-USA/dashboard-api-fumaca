@@ -5,6 +5,7 @@ import {
   Cpu,
   Database,
   HardDrive,
+  MemoryStick,
   Server,
 } from 'lucide-react'
 
@@ -16,7 +17,7 @@ const API_URL = 'http://localhost:8000'
 
 export default function Tecnico() {
   const [status, setStatus] = useState(null)
-  const [erro, setErro] = useState(null)
+const [erro, setErro] = useState(null)
   const [carregando, setCarregando] = useState(true)
   const [acaoDetector, setAcaoDetector] = useState(null)
 
@@ -32,6 +33,7 @@ export default function Tecnico() {
       const dados = await resposta.json()
 
       setStatus(dados)
+
       setErro(null)
     } catch (error) {
       setErro(error.message)
@@ -107,7 +109,7 @@ export default function Tecnico() {
       )}
 
 
-      <section style={styles.hero}>
+      <section className="tech-overview-hero">
         <div>
           <span style={styles.eyebrow}>
             Monitoramento
@@ -132,7 +134,7 @@ export default function Tecnico() {
       </section>
 
 
-      <section style={styles.grid}>
+      <section className="tech-overview-grid">
         <StatusCard
           icon={Server}
           title="Servidor"
@@ -149,7 +151,7 @@ export default function Tecnico() {
         />
 
         <StatusCard
-          icon={Activity}
+          icon={Cpu}
           title="Detecção de fumaça"
           online={status?.detector?.status === 'online'}
           value={
@@ -163,7 +165,7 @@ export default function Tecnico() {
               : 'Processo de detecção não está em execução'
           }
         >
-          <div style={styles.serviceActions}>
+          <div className="tech-overview-serviceActions">
             {status?.detector?.status === 'online' ? (
               <>
                 <button
@@ -238,28 +240,28 @@ export default function Tecnico() {
       </section>
 
 
-      <section style={styles.resources}>
-        <h2 style={styles.sectionTitle}>
+      <section className="tech-overview-resources">
+        <h2 className="tech-overview-sectionTitle">
           Recursos do servidor
         </h2>
 
-        <div style={styles.resourceGrid}>
+        <div className="tech-overview-resourceGrid">
           <ResourceCard
             icon={Cpu}
             title="Processador"
-            value={`${status?.cpu?.percent ?? 0}%`}
-            percent={status?.cpu?.percent ?? 0}
+            value={`${status?.cpu?.percent}%`}
+            percent={status?.cpu?.percent}
             description="Uso atual de CPU"
           />
 
           <ResourceCard
-            icon={Activity}
+            icon={MemoryStick}
             title="Memória"
-            value={`${status?.memory?.percent ?? 0}%`}
-            percent={status?.memory?.percent ?? 0}
+            value={`${status?.memory?.percent}%`}
+            percent={status?.memory?.percent}
             description={
               status
-                ? `${status.memory.used_gb} GB de ${status.memory.total_gb} GB`
+                ? `${status?.memory?.used_gb ?? '—'} GB de ${status?.memory?.total_gb ?? '—'} GB`
                 : 'Carregando...'
             }
           />
@@ -267,11 +269,11 @@ export default function Tecnico() {
           <ResourceCard
             icon={HardDrive}
             title="Armazenamento"
-            value={`${status?.disk?.percent ?? 0}%`}
-            percent={status?.disk?.percent ?? 0}
+            value={`${status?.disk?.percent}%`}
+            percent={status?.disk?.percent}
             description={
               status
-                ? `${status.disk.used_gb} GB de ${status.disk.total_gb} GB`
+                ? `${status?.disk?.used_gb ?? '—'} GB de ${status?.disk?.total_gb ?? '—'} GB`
                 : 'Carregando...'
             }
           />
@@ -291,8 +293,8 @@ function StatusCard({
   children,
 }) {
   return (
-    <article style={styles.card}>
-      <div style={styles.cardTop}>
+    <article className="tech-overview-card">
+      <div className="tech-overview-cardTop">
         <div
           style={{
             ...styles.iconBox,
@@ -353,39 +355,41 @@ function ResourceCard({
   percent,
   description,
 }) {
-  const valorBarra = Math.min(
-    Math.max(percent, 0),
-    100
-  )
+  const valido = typeof percent === 'number' && Number.isFinite(percent)
+  const valorBarra = valido ? Math.min(Math.max(percent, 0), 100) : 0
 
   return (
-    <article style={styles.resourceCard}>
-      <div style={styles.resourceHeader}>
+    <article className="tech-overview-resourceCard">
+      <div className="tech-overview-resourceHeader">
         <div style={styles.resourceIcon}>
-          <Icon size={18} />
+          <Icon size={18} strokeWidth={1.5} />
         </div>
-
-        <span style={styles.resourceTitle}>
-          {title}
-        </span>
+        <span style={styles.resourceTitle}>{title}</span>
       </div>
 
-      <div style={styles.resourceValue}>
-        {value}
+      <div className="tech-overview-resourceValue">
+        {valido ? value : '—'}
       </div>
 
-      <div style={styles.progress}>
+      {valido && (
         <div
-          style={{
-            ...styles.progressFill,
-            width: `${valorBarra}%`,
-          }}
-        />
-      </div>
+          style={styles.progress}
+          role="meter"
+          aria-label={title}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={valorBarra}
+        >
+          <div
+            style={{
+              ...styles.progressFill,
+              width: `${valorBarra}%`,
+            }}
+          />
+        </div>
+      )}
 
-      <p style={styles.resourceDescription}>
-        {description}
-      </p>
+      <p style={styles.resourceDescription}>{description}</p>
     </article>
   )
 }

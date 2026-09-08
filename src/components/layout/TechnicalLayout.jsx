@@ -59,11 +59,11 @@ export default function TechnicalLayout({
 
           <div>
             <div className="technical-brand-name">
-              Monitoramento
+              Usina Santo Ângelo
             </div>
 
             <div className="technical-brand-area">
-              Área técnica
+              Sistema de Detecção de Incêndio
             </div>
           </div>
         </div>

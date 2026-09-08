@@ -251,3 +251,333 @@
     padding: 24px 16px;
   }
 }
+
+
+/* TEMA TECNICO CLARO V1 */
+.technical-shell {
+  --bg-main: #f3f3ee;
+  --bg-sidebar: #fafaf7;
+  --bg-card: #ffffff;
+  --bg-elevated: #f5f6f1;
+  --border: #dce0d6;
+  --text-primary: #253027;
+  --text-secondary: #586357;
+  --text-tertiary: #667061;
+  --text-warm: #ffffff;
+  --green-deep: #e8efe6;
+  --green-primary: #386343;
+  --green-action: #2e5138;
+  --green-hover: #24432d;
+  --gold-deep: #f2eddf;
+  --gold-muted: #89723d;
+  --gold-primary: #806930;
+  --gold-action: #735e29;
+  --gold-hover: #655124;
+  --success: #386343;
+  --warning: #896621;
+  --danger: #a33f34;
+  --danger-hover: #872e25;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  color-scheme: light;
+  min-height: 100svh;
+}
+
+.technical-shell .technical-sidebar {
+  width: 244px;
+  flex-shrink: 0;
+  min-height: 100svh;
+  height: 100svh;
+  overflow-y: auto;
+  align-self: flex-start;
+  padding: 22px 12px 16px;
+}
+
+.technical-shell .technical-brand {
+  gap: 10px;
+  padding: 0 4px 22px;
+}
+
+.technical-shell .technical-logo {
+  width: 42px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.technical-shell .technical-brand-name {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.technical-shell .technical-brand-area {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-top: 5px;
+}
+
+.technical-shell .technical-menu-label {
+  font-size: 10px;
+  font-weight: 500;
+  margin-top: 24px;
+}
+
+.technical-shell .technical-nav-item {
+  min-height: 42px;
+  font-size: 13px;
+  gap: 10px;
+}
+
+.technical-shell .technical-nav-item:hover {
+  transform: none;
+}
+
+.technical-shell .technical-nav-item.is-active {
+  background: #2c4232;
+  border-color: #2c4232;
+  color: white;
+}
+
+.technical-shell .technical-nav-item.is-active svg {
+  color: white;
+}
+
+.technical-shell .technical-operator-button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 12px;
+  text-align: left;
+}
+
+.technical-shell .technical-operator-button:hover {
+  background: var(--bg-elevated);
+  border-color: #aab7a5;
+  transform: none;
+}
+
+.technical-shell .technical-logout-button {
+  font-size: 12px;
+}
+
+.technical-shell .technical-topbar {
+  min-height: 76px;
+  padding: 16px 24px;
+  gap: 20px;
+  background: var(--bg-sidebar);
+}
+
+.technical-shell .technical-topbar h1 {
+  font-size: 20px;
+  text-transform: none;
+  letter-spacing: -.4px;
+}
+
+.technical-shell .technical-topbar p {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.technical-shell .technical-user {
+  flex-shrink: 0;
+  padding-left: 20px;
+  border-left: 1px solid var(--border);
+}
+
+.technical-shell .technical-content {
+  max-width: none;
+  padding: 22px 24px;
+}
+
+.technical-shell :focus-visible {
+  outline: 2px solid #386343;
+  outline-offset: 3px;
+}
+
+.technical-shell .tech-overview-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 0 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.technical-shell .tech-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.technical-shell .tech-overview-card {
+  min-width: 0;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+.technical-shell .tech-overview-cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.technical-shell .tech-overview-serviceActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.technical-shell .tech-overview-resources {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px;
+}
+
+.technical-shell .tech-overview-sectionTitle {
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+  margin: 0 0 16px;
+}
+
+.technical-shell .tech-overview-resourceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.technical-shell .tech-overview-resourceCard {
+  min-width: 0;
+  padding: 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.technical-shell .tech-overview-resourceHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.technical-shell .tech-overview-resourceValue {
+  color: var(--text-primary);
+  font-size: 25px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 1101px) and (max-height: 800px) {
+  .technical-shell .technical-content { padding: 16px 20px; }
+  .technical-shell .tech-overview-hero {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  .technical-shell .tech-overview-card { padding: 12px; }
+  .technical-shell .tech-overview-grid { margin-bottom: 12px; }
+  .technical-shell .tech-overview-resources { padding: 14px; }
+}
+
+@media (max-width: 1100px) {
+  .technical-shell .technical-sidebar { width: 224px; }
+  .technical-shell .technical-brand-name { font-size: 12px; }
+  .technical-shell .tech-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .technical-shell .technical-sidebar {
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    overflow: visible;
+    padding: 16px;
+  }
+  .technical-shell .technical-sidebar-footer {
+    flex-direction: row;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+  .technical-shell .technical-content { padding: 18px 16px; }
+  .technical-shell .technical-topbar { padding: 16px; }
+  .technical-shell .tech-overview-hero { flex-wrap: wrap; }
+  .technical-shell .tech-overview-resourceGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .technical-shell .tech-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ícones técnicos */
+.technical-shell .tech-overview-cardTop > div {
+  background: transparent !important;
+  color: #354737 !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 0 !important;
+}
+
+.technical-shell .tech-overview-cardTop > div svg {
+  width: 25px;
+  height: 25px;
+  stroke-width: 1.5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.technical-shell .technical-topbar h1 {
+  color: #253027;
+}
+
+.technical-shell .technical-topbar p {
+  color: #586357;
+}
+
+/* Acesso ao operador: mesmo padrão do botão de retorno ao técnico. */
+.technical-shell .technical-operator-button {
+  background: #eef2e9;
+  border: 1px solid #d4ddcb;
+  color: #2c4232;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.technical-shell .technical-operator-button:hover {
+  background: #e3ebdc;
+  border-color: #b8c9ad;
+  color: #2c4232;
+  transform: none;
+}

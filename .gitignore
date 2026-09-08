@@ -44,3 +44,7 @@ coverage/
 # Legacy local backups
 *.bak
 *.bak[0-9]*
+
+# Arquivos auxiliares locais
+/backups/
+*:Zone.Identifier

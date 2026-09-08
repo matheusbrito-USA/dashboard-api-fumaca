@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { ChevronRight, MessageCircle, ShieldCheck } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logoUsina from '../assets/logo-usina-dourada.png'
+import floresta from '../assets/unnamed.png'
+import '../styles/login.css'
 
 const API_URL = 'http://localhost:8000'
 
@@ -73,264 +75,93 @@ export default function Login() {
   }
 
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        background: 'var(--bg-main)',
-        display: 'grid',
-        placeItems: 'center',
-        padding: 24,
-      }}
-    >
-      <section
-        style={{
-          width: '100%',
-          maxWidth: 420,
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border)',
-          borderRadius: 12,
-          padding: 32,
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            marginBottom: 32,
-          }}
-        >
-          <img
-            src={logoUsina}
-            alt="Logo"
-            style={{
-              width: 48,
-              height: 48,
-              objectFit: 'contain',
-            }}
-          />
-
-          <div>
-            <strong
-              style={{
-                display: 'block',
-                fontSize: 17,
-                fontWeight: 700,
-                color: 'var(--text-primary)',
-              }}
-            >
-              Monitoramento de Fumaça
-            </strong>
-
-            <span
-              style={{
-                color: 'var(--text-secondary)',
-                fontSize: 12,
-              }}
-            >
-              Plataforma de monitoramento inteligente
-            </span>
+    <main className="login-page">
+      <section className="login-shell" aria-label="Acesso ao sistema">
+        <aside className="login-landscape">
+          <img className="login-forest" src={floresta} alt="" />
+          <div className="login-brand">
+            <img
+              className="login-logo"
+              src={logoUsina}
+              alt="Usina Santo Ângelo"
+            />
+            <div className="login-brand-name">USINA SANTO ÂNGELO</div>
           </div>
-        </div>
+          <div className="login-title">
+            <span className="login-line" />
+            <h1>Sistema de<br />Detecção de Incêndio</h1>
+            <p>Monitoramento em tempo real</p>
+          </div>
+        </aside>
 
-        <h1
-          style={{
-            fontSize: 25,
-            marginBottom: 8,
-          }}
-        >
-          Bem-vindo
-        </h1>
+        <div className="login-panel">
+          <div className="login-form-wrap">
+            <header className="login-heading">
+              <h2>Bem-vindo</h2>
+              <p>Acesse o sistema para continuar.</p>
+            </header>
 
-        <p
-          style={{
-            marginBottom: 28,
-            fontSize: 14,
-          }}
-        >
-          Entre com suas credenciais para acessar o sistema.
-        </p>
+            <form onSubmit={entrar} aria-busy={carregando}>
+              <div className="login-field">
+                <label htmlFor="login-username">Usuário</label>
+                <input
+                  id="login-username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Digite seu usuário"
+                  autoComplete="username"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  disabled={carregando}
+                  required
+                />
+              </div>
 
-        <form onSubmit={entrar}>
-          <label
-            style={{
-              display: 'block',
-              marginBottom: 8,
-              fontSize: 11,
-              fontWeight: 500,
-            }}
-          >
-            Usuário
-          </label>
+              <div className="login-field">
+                <label htmlFor="login-password">Senha</label>
+                <input
+                  id="login-password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Digite sua senha"
+                  autoComplete="current-password"
+                  disabled={carregando}
+                  required
+                />
+              </div>
 
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Digite seu usuário"
-            autoComplete="username"
-            disabled={carregando}
-            style={{
-              width: '100%',
-              height: 44,
-              padding: '0 12px',
-              marginBottom: 20,
-            }}
-          />
+              {erro && (
+                <div className="login-error" role="alert">{erro}</div>
+              )}
 
-          <label
-            style={{
-              display: 'block',
-              marginBottom: 8,
-              fontSize: 11,
-              fontWeight: 500,
-            }}
-          >
-            Senha
-          </label>
+              <button
+                className="login-submit"
+                type="submit"
+                disabled={carregando}
+              >
+                {carregando ? 'Entrando...' : 'Entrar'}
+                {!carregando && <ChevronRight size={17} aria-hidden="true" />}
+              </button>
+            </form>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Digite sua senha"
-            autoComplete="current-password"
-            disabled={carregando}
-            style={{
-              width: '100%',
-              height: 44,
-              padding: '0 12px',
-              marginBottom: erro ? 12 : 24,
-            }}
-          />
-
-          {erro && (
-            <div
-              style={{
-                marginBottom: 18,
-                padding: '10px 12px',
-                borderRadius: 8,
-                background: 'rgba(196, 93, 93, 0.12)',
-                border: '1px solid rgba(196, 93, 93, 0.35)',
-                color: '#E28B8B',
-                fontSize: 11,
-              }}
-            >
-              {erro}
+            <div className="login-restricted">
+              <ShieldCheck size={15} aria-hidden="true" />
+              <span>Acesso restrito a usuários autorizados</span>
             </div>
-          )}
 
-          <button
-            type="submit"
-            disabled={carregando}
-            style={{
-              width: '100%',
-              height: 44,
-              border: 0,
-              borderRadius: 8,
-              background: 'var(--gold-primary)',
-              color: '#17120A',
-              fontWeight: 650,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-              cursor: carregando ? 'not-allowed' : 'pointer',
-              opacity: carregando ? 0.7 : 1,
-            }}
-          >
-            {carregando ? 'Entrando...' : 'Entrar'}
-
-            {!carregando && (
-              <ChevronRight size={18} />
-            )}
-          </button>
-        </form>
-
-        <div
-          style={{
-            marginTop: 24,
-            paddingTop: 20,
-            borderTop: '1px solid var(--border)',
-            color: 'var(--text-tertiary)',
-            fontSize: 12,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 8,
-          }}
-        >
-          <ShieldCheck size={15} />
-          Acesso restrito a usuários autorizados
-        </div>
-
-        <div
-          style={{
-            marginTop: 12,
-            width: '100%',
-            boxSizing: 'border-box',
-            padding: '10px 12px',
-            borderRadius: 8,
-            border: '1px solid var(--border)',
-            background: 'rgba(255, 255, 255, 0.015)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-          }}
-        >
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              flexShrink: 0,
-              borderRadius: 7,
-              display: 'grid',
-              placeItems: 'center',
-              background: 'transparent',
-              color: 'var(--text-tertiary)',
-            }}
-          >
-            <MessageCircle size={15} />
+            <div className="login-support">
+              <MessageCircle size={18} aria-hidden="true" />
+              <div>
+                <span>Suporte técnico</span>
+                <strong>Matheus Brito</strong>
+                <a href="tel:+5534997360838">+55 34 99736-0838</a>
+              </div>
+            </div>
           </div>
 
-          <div style={{ minWidth: 0 }}>
-            <span
-              style={{
-                display: 'block',
-                marginBottom: 4,
-                color: 'var(--gold-primary)',
-                fontSize: 9,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px',
-              }}
-            >
-              Suporte técnico
-            </span>
-
-            <strong
-              style={{
-                display: 'block',
-                color: 'var(--text-primary)',
-                fontSize: 12,
-                fontWeight: 650,
-              }}
-            >
-              Matheus Brito
-            </strong>
-
-            <span
-              style={{
-                display: 'block',
-                marginTop: 3,
-                color: 'var(--text-secondary)',
-                fontSize: 11,
-              }}
-            >
-              +55 34 99736-0838
-            </span>
-
-          </div>
+          <footer className="login-footer">Usina Santo Ângelo</footer>
         </div>
       </section>
     </main>
